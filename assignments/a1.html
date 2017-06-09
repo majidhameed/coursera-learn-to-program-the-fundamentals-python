@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <link rel="stylesheet" href="../../styles.css" type=
+        "text/css">
+        <title>
+            Learn to Program: The Fundamentals // Assignment 1
+        </title>
+    </head>
+    <body>
+        <h1>
+            Learn to Program: The Fundamentals // Assignment 1
+        </h1>
+        <h2>
+            Preface
+        </h2>
+        <h3>
+            Requirements
+        </h3>
+        <p>
+            Please read this handout carefully. It may take you as
+            long as an hour to read it once you work through our
+            examples!
+        </p>
+        <p>
+            You need to use Python 3 for this assignment. Python 2
+            is not suitable.
+        </p>
+        <h3>
+            Required Preparation
+        </h3>
+        <p>
+            This handout assumes that you have watched all the week
+            2 videos and also done the week 2 exercise. If you read
+            this handout before you've done all of that, please
+            come back and re-read it after you've passed the week 2
+            exercise.
+        </p>
+        <h3>
+            Problem Domains
+        </h3>
+        <p>
+            A <em>problem domain</em> is an area of expertise that
+            needs to be understood in order to solve a problem.
+            When programmers are hired, they usually need to learn
+            about their customer's problem domain. For example, if
+            a programmer is hired by a non-profit organization to
+            help with their financial database, that programmer
+            might have to learn how taxes apply to non-profit
+            organizations.
+        </p>
+        <p>
+            Every assignment in this course will have a problem
+            domain that you will need to learn about.
+        </p>
+        <h3>
+            A1 Problem Domain: Coordinated Universal Time
+        </h3>
+        <p>
+            The problem domain for this assignment involves time
+            zones, and in particular <a target="_top" href=
+            "http://en.wikipedia.org/wiki/Coordinated_Universal_Time">
+            <em>Coordinated Universal Time</em></a> (UTC), which is
+            "the primary time standard by which the world regulates
+            clocks and time" [Wikipedia]. As you know, there are
+            many different time zones in the world. Wikipedia has a
+            nice <a target="_top" href=
+            "http://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Standart_Time_Zones_2012.png/1280px-Standart_Time_Zones_2012.png">
+            map of the time zones</a>.
+        </p>
+        <p>
+            As of this writing, there are 40 time zones. One of
+            them, <a href=
+            "http://en.wikipedia.org/wiki/List_of_time_zones_by_UTC_offset#UTC.C2.B100:00.2C_Z">
+            UTC+00:00</a>, is considered to be in the "middle" of
+            the other time zones. All time zones have names, such
+            as UTC+02:00, that indicate the number of hours and
+            minutes they are away from UTC+00:00. For example, the
+            Philippines are in time zone UTC+08:00 because clocks
+            there are set 8 hours later than in time zone
+            UTC+00:00. If it's noon in time zone UTC+00:00, it's
+            20:00 in time zone UTC+08:00.
+        </p>
+        <h3>
+            Hours and minutes: representation
+        </h3>
+        <p>
+            In this assignment, we are often going to represent
+            hours and minutes and seconds together as a
+            <code>float</code>. 1 hour will be represented as
+            <code>1.0</code>, 1 hour and 30 minutes as
+            <code>1.5</code>, and so on. Henceforth, when we
+            specify a time zone, we will use this
+            <code>float</code> representation, so the time zone for
+            Nepal, which is in time zone UTC+05:45, will be
+            represented here as UTC+5.75.
+        </p>
+        <h3>
+            Preconditions
+        </h3>
+        <p>
+            Some of the functions you will write assume that
+            parameter values are in a certain range. The technical
+            term for these restrictions is <em>precondition</em>:
+            in order for the function to work, the precondition
+            must be met. <strong>A precondition is a warning to
+            whoever calls the function that the function was
+            designed to work only under those conditions.</strong>
+            When you see a precondition, that means we are
+            guaranteeing that we will only call that function with
+            values that meet the precondition. You can assume that
+            the parameter values meet the preconditions, you do not
+            need to check them. The preconditions are there to make
+            your lives easier!
+        </p>
+        <h3>
+            Print statements: don't use them
+        </h3>
+        <p>
+            Nothing in the assignment requires print statements; your code will be marked as incorrect if you use them.
+        </p>
+        <hr>
+        <h2 id="whattodo">
+            What to do
+        </h2>
+        <h3>
+            Step 1: Download the starter code
+        </h3>
+        <p>
+            In this assignment, we are providing <em>starter
+            code</em> that contains some function headers and
+            docstrings and one complete function.
+        </p>
+        <p>
+            <strong>Warning:</strong> this assignment involves
+            <code>float</code> calculations, and as you know, these
+            can be inexact. As an example, here is code copied from
+            the Python shell:
+        </p>
+        <pre>
+&gt;&gt;&gt; 7 / 3000
+0.0023333333333333335
+&gt;&gt;&gt; 7 * (1 / 3000)
+0.002333333333333333
+</pre>
+        <p>
+            Because we leave it up to you to write some
+            expressions, your functions may return values that are
+            very slightly different from the examples in our
+            docstrings. As long as they are very close, your code
+            will be marked as correct; you don't need to make your
+            code match our expected results exactly.
+        </p>
+        <p>
+            Download the starter code: <a href=
+            "http://spark-public.s3.amazonaws.com/programming1/a1/a1.py">
+            a1.py</a>. In IDLE, use File -&gt; Open to open it.
+        </p>
+        <hr>
+        <h3>
+            Step 2: Complete the code for function
+            <code>seconds_difference</code>
+        </h3>
+        <table width="100%" border="1" cellpadding="2" cellspacing=
+        "0" summary="">
+            <!-- col width="67*" /> <col width="189*" / -->
+            <tr>
+                <th style="width:25%">
+                    Function name:<br>
+                    (Parameter types) -&gt; Return type
+                </th>
+                <th style="width:75%">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>seconds_difference:</code><br>
+                    <code>(float, float) -&gt; float</code>
+                </td>
+                <td style="width:80%">
+                    The parameters are times in seconds. Return how
+                    many <em>seconds</em> later the second time is
+                    than the first.Please note: in a1.py, we have
+                    provided the completed docstring for this
+                    function, including example function calls with
+                    the expected return values.
+                </td>
+            </tr>
+        </table>
+        <p>
+            Once you have finished writing the body of
+            <code>seconds_difference</code>, in IDLE, choose Run
+            -&gt; Run Module. In the shell, test your function by
+            running the examples from the docstring. You can also
+            submit your assignment at the point to see whether
+            you're on the right track &acirc;&euro;&rdquo;
+            remember, you can submit once every hour up until the
+            deadline. If the example calls return the expected
+            results and you pass all the tests when you submit,
+            move on to Step 3. Otherwise, modify your code and
+            repeat the tests.
+        </p>
+        <hr>
+        <h3>
+            Step 3: Complete the code for function
+            <code>hours_difference</code>
+        </h3>
+        <p>
+            Here is some helpful information:
+        </p>
+        <ul>
+            <li>there are 60 seconds in 1 minute
+            </li>
+            <li>there are 60 minutes in 1 hour
+            </li>
+        </ul>
+        <table width="100%" border="1" cellpadding="2" cellspacing=
+        "0" summary="">
+            <!-- col width="67*" /> <col width="189*" / -->
+            <tr>
+                <th style="width:25%">
+                    Function name:<br>
+                    (Parameter types) -&gt; Return type
+                </th>
+                <th style="width:75%">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>hours_difference:</code><br>
+                    <code>(float, float) -&gt; float</code>
+                </td>
+                <td style="width:80%">
+                    The parameters are times in seconds. Return how
+                    many <em>hours</em> later the second time is
+                    than the first. (Please note: in a1.py, we have
+                    provided the completed docstring for this
+                    function, including example function calls with
+                    the expected return values.)
+                </td>
+            </tr>
+        </table>
+        <p>
+            Once you have finished writing the body of
+            <code>hours_difference</code>, in IDLE, choose Run
+            -&gt; Run Module. In the shell, test your function by
+            running the examples from the docstring. If the example
+            calls return the expected results, move on to Step 4.
+            Otherwise, modify your code and repeat the tests.
+        </p>
+        <hr>
+        <h3>
+            Step 4: Complete the code for function
+            <code>to_float_hours</code>
+        </h3>
+        <table width="100%" border="1" cellpadding="2" cellspacing=
+        "0" summary="">
+            <!-- col width="67*" /> <col width="189*" / -->
+            <tr>
+                <th style="width:25%">
+                    Function name:<br>
+                    (Parameter types) -&gt; Return type
+                </th>
+                <th style="width:75%">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>to_float_hours:</code><br>
+                    <code>(int, int, int) -&gt; float</code>
+                </td>
+                <td style="width:80%">
+                    The first parameter is a time in hours, the
+                    second parameter is a time in minutes (between
+                    0 and 59, inclusive), and the third parameter
+                    is a time in seconds (between 0 and 59,
+                    inclusive). Return the combined time as a float
+                    value. (Please note: in a1.py, we have provided
+                    the completed docstring for this function,
+                    including example function calls with the
+                    expected return values.)
+                </td>
+            </tr>
+        </table>
+        <p>
+            Once you have finished writing the body of
+            <code>to_float_hours</code>, in IDLE, choose Run -&gt;
+            Run Module. In the shell, test your function by running
+            the examples from the docstring. If the example calls
+            return the expected results, move on to Step 5.
+            Otherwise, modify your code and repeat the tests.
+        </p>
+        <hr>
+        <h3>
+            Step 5: Write functions <code>get_hours</code>,
+            <code>get_minutes</code> and <code>get_seconds</code>
+        </h3>
+        <p>
+            Read this section and make sure you understand all of
+            it before you proceed.
+        </p>
+        <p>
+            We have not provided starter code for these three
+            functions, although we have described them fully in the
+            table below. <em>Follow the Function Design Recipe</em>
+            as you develop these functions in a1.py.
+        </p>
+        <p>
+            The three functions, <code>get_hours</code>,
+            <code>get_minutes</code> and <code>get_seconds</code>,
+            are related: they are used to determine the hours part,
+            minutes part and seconds part of a time in seconds.
+        </p>
+        <p>
+            For example, if <code>3800</code> seconds have elapsed
+            since midnight:
+        </p>
+        <pre>
+    &gt;&gt;&gt; get_hours(3800)
+    1
+    &gt;&gt;&gt; get_minutes(3800)
+    3
+    &gt;&gt;&gt; get_seconds(3800)
+    20
+            
+</pre>
+        <p>
+            In other words, if <code>3800</code> seconds have
+            elapsed since midnight, it is currently
+            <code>01:03:20</code> (hh:mm:ss).
+        </p>
+        <p>
+            Here is an overview of how we determined what the
+            example function calls should return:
+        </p>
+        <ul>
+            <li>There are 60 seconds in 1 minute and 60 minutes in
+            1 hour, so there are 60 * 60, or 3600, seconds in 1
+            hour.
+            </li>
+            <li>Because there are 3600 seconds in an hour, there is
+            1 full hour in 3800 seconds. There are 200 seconds
+            remaining.
+            </li>
+            <li>Because there are 60 seconds in a minute, there are
+            3 full minutes in 200 seconds. There are 20 seconds
+            remaining.
+            </li>
+            <li>Therefore 3800 seconds is equivalent to 1 hour, 3
+            minutes and 20 seconds.
+            </li>
+        </ul>
+        <p>
+            There are several ways to write these three function
+            bodies. You may find operators <code>%</code> and
+            <code>//</code> to be helpful. Function
+            <code>to_24_hour_clock</code> in the starter code has
+            an example of using <code>%</code>.
+        </p>
+        <p>
+            As an example of the approach you might use, lets
+            assume your program is given a number and you want to
+            work out the "units" portion (remember, the hundred,
+            tens, units thing for decimal numbers?) Let's assume
+            the number is 123.
+        </p>
+        <p>
+            First, we get rid of the hundreds column:
+        </p>
+        <pre>
+&gt;&gt;&gt; 123 % 100
+23
+</pre>
+        <p>
+            You can see that 100 goes in to 123 once and leaves us
+            with 23.
+        </p>
+        <p>
+            Next, we get rid of the tens.
+        </p>
+        <pre>
+&gt;&gt;&gt; 23 % 10
+3
+</pre>
+        <p>
+            The number 10 divides in to 23 twice and leaves us with
+            3 and we have achieved our goal; there are 3 "units".
+        </p>
+        <table width="100%" border="1" cellpadding="2" cellspacing=
+        "0" summary="">
+            <!-- col width="67*" /> <col width="189*" / -->
+            <tr>
+                <th style="width:25%">
+                    Function name:<br>
+                    (Parameter types) -&gt; Return type
+                </th>
+                <th style="width:75%">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>get_hours:</code><br>
+                    <code>(int) -&gt; int</code>
+                </td>
+                <td style="width:80%">
+                    The parameter is a number of seconds since
+                    midnight. Return the number of <em>hours</em>
+                    that have elapsed since midnight, as seen on a
+                    24-hour clock. (You should call
+                    <code>to_24_hour_clock</code> to convert the
+                    number of full hours to a time on a 24 hour
+                    clock. This means that the return value should
+                    be in the range 0 to 23, inclusive.)
+                </td>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>get_minutes:</code><br>
+                    <code>(int) -&gt; int</code>
+                </td>
+                <td style="width:80%">
+                    The parameter is a number of seconds since
+                    midnight. Return the number of <em>minutes</em>
+                    that have elapsed since midnight as seen on a
+                    clock. (This means that the return value should
+                    be in the range 0 to 59, inclusive.)
+                </td>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>get_seconds:</code><br>
+                    <code>(int) -&gt; int</code>
+                </td>
+                <td style="width:80%">
+                    The parameter is a number of seconds since
+                    midnight. Return the number of <em>seconds</em>
+                    that have elapsed since midnight as seen on a
+                    clock. (This means that the return value should
+                    be in the range 0 to 59, inclusive.)
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <h3>
+            Step 6: Complete functions <code>time_to_utc</code> and
+            <code>time_from_utc</code>
+        </h3>
+        <p>
+            Complete functions <code>time_to_utc</code> and
+            <code>time_from_utc</code>. The header and docstrings
+            are in the starter code. Use those examples to
+            determine the appropriate formula. We have
+            intentionally left out tests involving time zones that
+            are not on the hour: you should make sure you handle
+            those cases.
+        </p>
+        <table width="100%" border="1" cellpadding="2" cellspacing=
+        "0" summary="">
+            <!-- col width="67*" /> <col width="189*" / -->
+            <tr>
+                <th style="width:25%">
+                    Function name:<br>
+                    (Parameter types) -&gt; Return type
+                </th>
+                <th style="width:75%">
+                    Description
+                </th>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>time_to_utc:</code><br>
+                    <code>(number, float) -&gt; float</code>
+                </td>
+                <td style="width:80%">
+                    The first parameter is a UTC offset specifying
+                    a time zone and the second parameter is a time
+                    in that time zone. Return the equivalent UTC+0
+                    time. Be sure to call
+                    <code>to_24_hour_clock</code> to convert the
+                    time to a time on a 24 hour clock before
+                    returning.
+                </td>
+            </tr>
+            <tr>
+                <td style="width:20%">
+                    <code>time_from_utc:</code><br>
+                    <code>(number, float) -&gt; float</code>
+                </td>
+                <td style="width:80%">
+                    The first parameter is a UTC offset specifying
+                    a time zone and the second parameter is a time
+                    in time zone UTC+0. Return the equivalent time
+                    in the time zone specified by
+                    <code>utc_offset</code>. Be sure to call
+                    <code>to_24_hour_clock</code> to convert the
+                    time to a time on a 24 hour clock before
+                    returning.
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <h3>
+            Step 7: Submit your work
+        </h3>
+        <p>
+            Go to the Assignments page and click the appropriate
+            Submit button. Choose your completed a1.py file. It
+            should be marked within a few minutes. You can see your
+            results by clicking on your Score.
+        </p>
+        <p>
+            You can submit a1.py once every hour. Only your last
+            submission will count. Notice that this means that you
+            can submit a lot of times before the due date if you
+            start early. You can even submit before you've finished
+            all of the functions, although the feedback will be
+            incomplete.
+        </p>
+        <hr>
+        <h3>
+            Fun stuff: a Graphical User Interface!
+        </h3>
+        <p>
+            <em style="color:red">This will not work correctly
+            until you have finished the rest of the
+            assignment!</em>
+        </p>
+        <p>
+            We provide a graphical user interface (GUI) that shows
+            four clocks and allows you to choose time zones to
+            display. Download <a href=
+            "http://spark-public.s3.amazonaws.com/programming1/a1/a1_gui.py">
+            a1_gui.py</a>. Save it in the same directory as your
+            <code>a1.py</code> file. In IDLE, run
+            <code>a1_gui.py</code> and see the clocks in action!
+        </p>
+        <p>
+            <em style="color:red">You are not expected to
+            understand the code in <code>a1_gui.py</code>.</em>
+        </p>
+        <p>
+            Here's a screenshot; notice that clocks can have a
+            light or dark background depending on whether they
+            indicate a time before or after noon. We've also
+            provided buttons for speeding up and slowing down the
+            clocks in case you want to see what happens around
+            midnight and so on.
+        </p>
+        <p>
+            <img src=
+            "http://spark-public.s3.amazonaws.com/programming1/a1/clock_example.jpg">
+        </p>
+    </body>
+</html>

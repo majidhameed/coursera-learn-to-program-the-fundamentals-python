@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../../styles.css" type="text/css">
+        <title>
+            Learn to Program: The Fundamentals // Assignment 3
+        </title>
+    </head>
+    <body>
+        <h1>
+            Learn to Program: The Fundamentals // Assignment 3
+        </h1>
+        <h2>
+            Preface
+        </h2>
+        <h3>
+            Required Preparation
+        </h3>
+        <p>
+            This handout assumes that you have watched all the week 6 videos and also done the week 6 exercise. If you read this handout before you've done all of that, please come back and re-read it after you've passed the week 6 exercise.
+        </p>
+        <h3>
+            A3 Problem Domain: Word Search Game
+        </h3>
+        <p>
+           For A3, you will implement a word search game. The game involves an rectangular board of uppercase letters that is read from a file. For example, here are the file contents representing a (tiny) 2 row by 4 column board:</p>
+           
+<pre>
+ANTT
+XSOB
+</pre>
+
+        <p>
+            The game also involves a non-empty words list read from a file. For example, here are example file contents for a list of three words:
+        </p>   
+<pre>
+ANT
+BOX
+SOB
+TO
+</pre>    
+
+    <p>
+       The object of the game is for the players to view the board and find words (the words list is unknown to the players). Words may be contained in
+       rows (from left to right) or columns (from top to bottom). When a player correctly guesses a word that occurs in the
+       list of words, that player is awarded points according to a scoring system described below. The game ends when all words from the list of words have been guessed. The player with the highest score wins.
+    </p>
+    
+    <p>
+       The words from the words list and the letters of the board are made up of alphabetic, uppercase characters. 
+    </p>
+        <h3>
+            Terminology in this handout
+        </h3>
+        <ul>
+            <li>A <em>board</em> is a <code>list of list of str</code>, such as <code>[['A', 'N', 'T', 'T'],  ['X', 'S', 'O', 'B']]</code>.</li>
+            <li>A <em>words list</em> is a <code>list of str</code> such as <code>['ANT', 'SOB', TO']</code>.</li>
+        </ul>
+        <hr>
+        <h2 id="whattodo">
+            What to do
+        </h2>
+        <h3>
+            Step 1: Download the starter code
+        </h3>
+        <p>
+            In this assignment, we are providing <em>starter code</em>:
+        </p>
+        <p>
+            Download the starter code: 
+            <ul>
+                <li><a href="http://spark-public.s3.amazonaws.com/programming1/a3/a3.py">a3.py</a> (headers and docstrings for all functions you write)</li>
+                <li><a href="http://spark-public.s3.amazonaws.com/programming1/a3/wordlist1.txt">wordlist1.txt</a> (a sample words list file)</li>
+                <li><a href="http://spark-public.s3.amazonaws.com/programming1/a3/board1.txt">board1.txt</a> (a sample board file)</li>
+                <li><a href="http://spark-public.s3.amazonaws.com/programming1/a3/a3_driver.py">a3_driver.py</a> (a complete file that calls your functions and drives the game)</li>
+             </ul>
+        </p>
+        <hr>
+        <h3>
+            Step 2: Complete the functions in <code>a3.py</code>.
+        </h3>
+        <p>
+            The starter code contains a header and a docstring for each function in the table below, so the descriptions are not repeated here. Each docstring contains
+            one example call and the first thing you should do is add additional examples in order to gain a better 
+            understanding of the function.
+        </p>
+        <p>    
+              We recommend that you work on the functions in the order that they are listed in the starter code.  As usual, once you finish writing
+            a function, in IDLE, choose Run -&gt; Run Module and test each function by calling some example function calls in
+            the shell. You can also submit your assignment at this point to see whether you're on the right track: remember, you can submit once every hour up until the deadline. If the example calls return the expected results and you pass all the tests when you submit, move on to Step 3. Otherwise, modify your code and repeat the tests.
+        </p>
+        
+        <p>
+            You may find it useful to call some of the functions you have written from other functions.  Here is some information about how the functions relate to each other and how they are used in the game:
+        </p>
+        
+        <ul>
+            <li><code>is_valid_word</code>: checks whether a word a that player guessed is in the words list.</li>
+            <li><code>make_str_from_row</code>: creates a string from the list of single character strings representing a row. Hint: look at how this is used by <code>board_contains_word_in_row</code>.</li>
+            <li><code>make_str_from_column</code>: creates a string from the list of single character strings representing a row. Hint: this may be helpful for <code>board_contains_word_in_column</code>.</li>
+            <li><code>board_contains_word_in_row</code>: checks whether a word that a player guessed occurs in any of the rows of the board. <b>This function is provided in the starter code.</b></li>
+            <li><code>board_contains_word_in_column</code>: checks whether a word that a player guessed occurs in any of the columns of the board. Hint: see <code>board_contains_word_in_row</code>.
+            <li><code>board_contains_word</code>: checks whether a word that a player guessed occurs in any of the rows or columns of the board.</li>
+            <li><code>word_score</code>: calculates the score that a correctly guessed word earns.</li>
+            <li><code>update_score</code>: adds the points that a correctly guessed word earns to the score.</li> 
+            <li><code>num_words_on_board</code>: calculates how many words from the words list appear on a particular board.</li>                                                                    
+            <li><code>read_words</code>: creates a words list made up of the words from a file. Hint: to test this function, you should open a file such as wordslist1.txt and pass the open file as an argument to this function.</li>                                                            
+            <li><code>read_board</code>: creates a board made up of the rows of letters from a file.  Hint: to test this function, you should open a file such as board1.txt and pass the open file as an argument to this function.</li>                                                                    </ul>
+
+        <hr>
+        <h3>
+            Step 3: Submit your work
+        </h3>
+        <p>
+            Go to the Assignments page and click the appropriate Submit button. Choose your completed <b>a3.py</b> file. It should be marked within a few minutes. You can see your results by clicking on your Score.
+        </p>
+        <p>
+            You can submit <b>a3.py</b> once every hour. Notice that this means that you can submit a lot of times before the due date if you start early. You can even submit before you've finished all of the functions. We will take the highest score out of all of your submissions.
+        </p>
+        <hr>
+        <h3>
+            Fun stuff: play the game!
+        </h3>       
+        
+        <p>
+            <em style="color:red">This will not work correctly
+            until you have finished the rest of the
+            assignment!</em>
+        </p>
+        <p>
+            We provide a driver for the game. Download <a href=
+            "http://spark-public.s3.amazonaws.com/programming1/a3/a3_driver.py">
+            a3_driver.py</a>. Save it in the same directory as your
+            <code>a3.py</code> file. In IDLE, run
+            <code>a3_driver.py</code> and play your game!
+        </p>
+
+    </body>
+</html>
