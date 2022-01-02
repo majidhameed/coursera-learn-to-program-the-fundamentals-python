@@ -1,3 +1,4 @@
+![](https://img.shields.io/github/license/majidhameed/coursera-learn-to-program-the-fundamentals-python?style=plastic)
 
 #### Course Title: 
 Learn to Program: The Fundamentals
